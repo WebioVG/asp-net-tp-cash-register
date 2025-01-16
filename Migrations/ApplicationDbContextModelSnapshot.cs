@@ -75,11 +75,13 @@ namespace cashRegister.Migrations
 
             modelBuilder.Entity("cashRegister.Models.Product", b =>
                 {
-                    b.HasOne("cashRegister.Models.Category", null)
+                    b.HasOne("cashRegister.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("cashRegister.Models.Category", b =>

@@ -17,15 +17,35 @@ public class ProductRepository : IProductRepository
         return await _context.Products.CountAsync();
     }
     
-    public Task<Product> GetById(int id)
+    public async Task<Product?> GetById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Products.FindAsync(id);
     }
 
-    public async Task<Product> Add(Product product)
+    public async Task<List<Product?>> GetAll()
+    {
+        return await _context.Products.ToListAsync();
+    }
+
+    public async Task<Product?> Add(Product? product)
     {
         await _context.Products.AddAsync(product);
         await _context.SaveChangesAsync();
+        return product;
+    }
+
+    public async Task<Product?> Update(Product? product)
+    {
+        if (product == null)
+        {
+            return null;
+        }
+        
+        var productToUpdate = _context.Products.FindAsync(product.Id);
+
+        _context.Entry(productToUpdate).CurrentValues.SetValues(product);
+        await _context.SaveChangesAsync();
+        
         return product;
     }
 }

@@ -4,7 +4,7 @@ namespace cashRegister.Models;
 
 public class SeedData
 {
-    public static async Task Initialize(IServiceProvider serviceProvider, IProductRepository productRepository, ICategoryInterface categoryRepository)
+    public static async Task Initialize(IServiceProvider serviceProvider, IProductRepository productRepository, ICategoryRepository categoryRepository)
     {
         // Populate Category table if empty
         if (await categoryRepository.Count() == 0)

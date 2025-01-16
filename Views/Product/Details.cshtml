@@ -1,0 +1,38 @@
+@model cashRegister.Models.Product
+
+@{
+    ViewBag.Title = "Détails du produit";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3>@Model.Name</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Prix:</strong> @Model.Price €</p>
+        <p><strong>Quantité:</strong> @Model.Quantity</p>
+        <p><strong>Catégorie:</strong> @Model.Category?.Name</p>
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <div>
+                <strong>Image:</strong>
+                <img src="@Model.Image" alt="Image of @Model.Name" class="img-fluid mt-2" style="max-height: 300px;" />
+            </div>
+        }
+        else
+        {
+            <p><strong>Image:</strong> Aucun</p>
+        }
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Modifier</a>
+        <form asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display:inline-block;">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        <a asp-controller="Product" asp-action="Products" class="btn btn-secondary">Retour à la liste</a>
+    </div>
+</div>

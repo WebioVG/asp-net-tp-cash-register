@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cashRegister.Repositories;
 
-public class CategoryRepository : ICategoryInterface
+public class CategoryRepository : ICategoryRepository
 {
     private readonly ApplicationDbContext _context;
 
@@ -17,17 +17,17 @@ public class CategoryRepository : ICategoryInterface
         return await _context.Categories.CountAsync();
     }
     
-    public Task<Category> GetById(int categoryId)
+    public async Task<Category?> GetById(int categoryId)
     {
-        throw new NotImplementedException();
+        return await _context.Categories.FirstOrDefaultAsync(x => x.Id == categoryId);
     }
 
-    public Task<List<Category>> GetAll()
+    public async Task<List<Category?>> GetAll()
     {
-        throw new NotImplementedException();
+        return await _context.Categories.ToListAsync();
     }
 
-    public async Task<Category> Add(Category category)
+    public async Task<Category?> Add(Category? category)
     {
         await _context.Categories.AddAsync(category);
         await _context.SaveChangesAsync();

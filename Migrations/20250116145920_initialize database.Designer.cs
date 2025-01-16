@@ -11,7 +11,7 @@ using cashRegister;
 namespace cashRegister.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250116142122_initialize database")]
+    [Migration("20250116145920_initialize database")]
     partial class initializedatabase
     {
         /// <inheritdoc />
@@ -78,11 +78,13 @@ namespace cashRegister.Migrations
 
             modelBuilder.Entity("cashRegister.Models.Product", b =>
                 {
-                    b.HasOne("cashRegister.Models.Category", null)
+                    b.HasOne("cashRegister.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("cashRegister.Models.Category", b =>

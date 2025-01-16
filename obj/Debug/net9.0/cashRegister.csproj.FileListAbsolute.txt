@@ -229,3 +229,4 @@
 /Users/k.kowalsky/Dev/dotnet/cashRegister/obj/Debug/net9.0/cashRegister.pdb
 /Users/k.kowalsky/Dev/dotnet/cashRegister/obj/Debug/net9.0/cashRegister.genruntimeconfig.cache
 /Users/k.kowalsky/Dev/dotnet/cashRegister/obj/Debug/net9.0/ref/cashRegister.dll
+/Users/k.kowalsky/Dev/dotnet/cashRegister/obj/Debug/net9.0/cashRegister.sourcelink.json

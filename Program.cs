@@ -18,7 +18,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICategoryInterface, CategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
@@ -27,7 +27,7 @@ using (var serviceScope = app.Services.CreateScope())
 {
     var services = serviceScope.ServiceProvider;
     var productRepository = services.GetRequiredService<IProductRepository>();
-    var categoryRepository = services.GetRequiredService<ICategoryInterface>();
+    var categoryRepository = services.GetRequiredService<ICategoryRepository>();
     await SeedData.Initialize(services, productRepository, categoryRepository);
 }
 
